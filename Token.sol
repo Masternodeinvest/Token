@@ -39,10 +39,6 @@ contract SafeMath {
 }
 
 
-// ----------------------------------------------------------------------------
-// ERC Token Standard #20 Interface
-// https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md
-// ----------------------------------------------------------------------------
 contract ERC20Interface {
     function totalSupply() public constant returns (uint);
     function balanceOf(address tokenOwner) public constant returns (uint balance);
@@ -58,8 +54,6 @@ contract ERC20Interface {
 
 // ----------------------------------------------------------------------------
 // Contract function to receive approval and execute function in one call
-//
-// Borrowed from MiniMeToken
 // ----------------------------------------------------------------------------
 contract ApproveAndCallFallBack {
     function receiveApproval(address from, uint256 tokens, address token, bytes data) public;
@@ -155,10 +149,6 @@ contract MSToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     // Token owner can approve for spender to transferFrom(...) tokens
     // from the token owner's account
-    //
-    // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md
-    // recommends that there are no checks for the approval double-spend attack
-    // as this should be implemented in user interfaces 
     // ------------------------------------------------------------------------
     function approve(address spender, uint tokens) public returns (bool success) {
         allowed[msg.sender][spender] = tokens;
